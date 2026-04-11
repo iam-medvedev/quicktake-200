@@ -21,6 +21,7 @@
     "ts-exif-parser": "^0.2.2"
   },
   "devDependencies": {
+    "@serialport/binding-mock": "^10.2.2",
     "@types/pngjs": "^6.0.5",
     "@types/prompts": "^2.4.9",
     "typescript": "^5.9.3"
