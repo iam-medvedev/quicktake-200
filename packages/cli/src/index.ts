@@ -25,7 +25,7 @@ import { writeFile } from "fs/promises";
   console.log(`Pictures in camera: ${count}`);
 
   console.log("Downloading thumb...");
-  const thumb = await client.downloadThumbnail(12);
+  const thumb = await client.downloadThumbnail(13);
   console.log(`Thumb data`, thumb);
   const filename = `thumb_1.jpg`;
   await writeFile(filename, thumb.thumb);
