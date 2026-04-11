@@ -1,0 +1,22 @@
+{
+  "name": "@quicktake-200/app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev"
+  },
+  "dependencies": {
+    "@quicktake-200/client": "workspace:*",
+    "pretty-bytes": "^7.1.0",
+    "save-file": "^2.3.1",
+    "solid-js": "^1.9.12"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite-plugin-solid": "^2.11.12",
+    "vite": "^8.0.8"
+  },
+  "volta": {
+    "node": "24.14.1"
+  }
+}

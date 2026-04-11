@@ -1,0 +1,28 @@
+{
+  "name": "@quicktake-200/client",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": {
+      "browser": "./src/browser.ts",
+      "node": "./src/node.ts",
+      "default": "./src/browser.ts"
+    }
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "es-toolkit": "^1.45.1",
+    "it-reader": "^6.0.4",
+    "iter-tools-es": "^7.5.4",
+    "peek-readable": "^7.0.0",
+    "pngjs": "^7.0.0",
+    "prompts": "^2.4.2",
+    "serialport": "^13.0.0",
+    "ts-exif-parser": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/pngjs": "^6.0.5",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.9.3"
+  }
+}
