@@ -6,9 +6,11 @@
     "dev": "bun tsx ./src/index.ts"
   },
   "dependencies": {
-    "@quicktake-200/client": "workspace:*"
+    "@quicktake-200/client": "workspace:*",
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "@types/prompts": "^2.4.9",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },

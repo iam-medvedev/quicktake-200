@@ -1,49 +1,42 @@
 import { Client, Transport } from "@quicktake-200/client";
 import { writeFile } from "fs/promises";
+import path from "path";
+import prompts from "prompts";
 
 (async function () {
   const port = await Transport.getPort();
   const transport = new Transport(port);
   const client = new Client(transport);
 
-  console.log("Connecting to camera...");
+  console.info("Connecting to camera...");
   await client.connect();
-  console.log("✓ Connected!");
+  console.info("✔ Connected!");
 
-  console.log("Getting software version...");
-  const version = await client.getSoftwareVersion();
-  console.log("Software version:", version);
-
-  console.log(
-    "Test picture name/size",
-    await client.getPictureName(1),
-    await client.getPictureSize(1),
-  );
-
-  console.log("Getting number of pictures...");
   const count = await client.getPicturesNumber();
-  console.log(`Pictures in camera: ${count}`);
+  console.info(`Pictures in camera: ${count}`);
 
-  console.log("Downloading thumb...");
-  const thumb = await client.downloadThumbnail(13);
-  console.log(`Thumb data`, thumb);
-  const filename = `thumb_1.jpg`;
-  await writeFile(filename, thumb.thumb);
+  const { index } = await prompts({
+    type: "number",
+    name: "index",
+    message: `Enter image number (1-${count})`,
+    validate: (v) => (v >= 1 && v <= count) || `Must be between 1 and ${count}`,
+  });
 
-  //   for (let i = 1; i <= count; i++) {
-  //     const start = Date.now();
-  //
-  //     console.log(`Downloading ${i}...`);
-  //     const image = await client.downloadImage(i);
-  //     console.log(`Image size: ${image.length} bytes`);
-  //
-  //     const filename = `image_${i}.jpg`;
-  //     await writeFile(filename, image);
-  //     const end = Date.now();
-  //     console.log(`✓ Saved to ${filename} in ${end - start} ms`);
-  //   }
+  if (typeof index !== "number") {
+    await client.disconnect();
+    process.exit(1);
+  }
 
-  console.log("Disconnecting...");
+  const name = await client.getPictureName(index);
+  console.info(`Downloading ${name}...`);
+  const image = await client.downloadImage(index);
+
+  const outputPath = path.join(process.cwd(), name);
+
+  await writeFile(outputPath, image);
+  console.info(`✔ Saved to ${outputPath} (${image.length} bytes)`);
+
   await client.disconnect();
-  console.log("✓ Done!");
+  console.info("✔ Done!");
+  process.exit(0);
 })();
