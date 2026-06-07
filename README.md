@@ -4,4 +4,4 @@ An experimental browser client for the Apple QuickTake 200 camera, built using t
 
 Read the full write-up: [Reverse Engineering the Apple QuickTake 200 in 2026](https://dev.to/imedvedev/reverse-engineering-the-apple-quicktake-200-in-2026-1ohd-temp-slug-958688)
 
-<img src="./demo.png" width="800" />
+<img src="./demo.webp" width="800" />
